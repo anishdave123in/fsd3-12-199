@@ -6,6 +6,8 @@ button.on("click", (uname) => {
 
 button.emit("click", "ANISH DAVE");  
 button.emit("click", "AMBIKESH SINGH");
-button.emit("click", "AMOGH GUPTA");
+button.emit("click", "AMOGH GUPTA");  
 button.emit("click", "AKSHAY SHEORAN");
 button.emit("click", "AMISH WAQAR");
+
+//done
