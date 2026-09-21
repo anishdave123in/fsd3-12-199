@@ -6,4 +6,4 @@ button.on("click", () => {
 button.on("click", () => {
     console.log("TASK DONE");
 });
-button.emit("click");
+button.emit("click");  //done
