@@ -8,3 +8,4 @@ console.log(`Is folder: ${fstat.isDirectory()}`);
 console.log(`Is symlink: ${fstat.isSymbolicLink()}`);
 console.log(`Is created on: ${fstat.birthtime}`);
 console.log(`Is accessed on: ${fstat.atime}`);
+//done

@@ -7,3 +7,6 @@ function addNumbers(a, b) {
 }
 let result = addNumbers(5, 10);
 console.log("The sum is: " + result);
+
+
+//done

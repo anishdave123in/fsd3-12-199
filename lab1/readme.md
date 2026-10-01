@@ -21,4 +21,4 @@ Modern javascript divided into two categories
     - priority(nextTick,Promise,setImmediate/setTimeout)
 
 - module js(mjs) ->follow modular approach ->import
-  - priority (Promise,nextTick,setImmediate/setTimeout)
+  - priority (Promise,nextTick,setImmediate/setTimeout) //done

@@ -23,3 +23,24 @@ script{
 - REST API uses (get,post,put,patch,delete) method to communicate with client
 - any browser can check only get method
 - for other method type we use third party API Tester like postman, thunder client, echo api etc
+
+//done
+### GET
+
+### run "npm i" to include all required contents
+- then use npm run dev
+
+###### Request Type
+1. Get - Get all,get by id
+ Get: /api/products (it shows all product at once)
+ Get: /api/products/101(It shows only one product whose id is 101)
+2. Post- /api/products and data will be shared by eco apibody selection
+3. Put
+
+
+
+* Get request - get all or get by id
+* Post request - to add product (enter in body)
+* 
+*
+*
