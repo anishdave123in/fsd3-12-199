@@ -31,7 +31,7 @@ script{
 - then use npm run dev
 
 ###### Request Type
-1. Get - Get all,get by id
+1. Get - Get all,get by id   
  Get: /api/products (it shows all product at once)
  Get: /api/products/101(It shows only one product whose id is 101)
 2. Post- /api/products and data will be shared by eco apibody selection
