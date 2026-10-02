@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXORA | Gaming Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#080a11;--card:#121622;--purple:#9b5cff;--cyan:#00e5ff;--white:#f5f5fa;--muted:#9297a9}
+body{background:var(--bg);color:var(--white);font-family:Inter,sans-serif}
+button,input{font:inherit}
+button{cursor:pointer}
+html{scroll-behavior:smooth}
+.navbar{height:78px;padding:0 7%;display:flex;align-items:center;justify-content:space-between;background:#0b0d15;border-bottom:1px solid #ffffff15;position:sticky;top:0;z-index:20}
+.logo{font:800 25px Orbitron;letter-spacing:2px}
+.logo span{color:var(--cyan)}
+.nav-links{display:flex;gap:30px}
+.nav-links a{color:#c4c5d0;text-decoration:none;font-size:13px}
+.nav-links a:hover{color:var(--cyan)}
+.cart-btn{background:#202438;border:1px solid #41465c;color:white;padding:12px 18px;border-radius:8px}
+#cartCount{color:var(--cyan);font-weight:800}
+.hero{min-height:570px;padding:70px 8%;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:35px;background:radial-gradient(ellipse at 80% 50%,#6535b52b,transparent 55%)}
+.hero-content .tag{color:var(--cyan);font-size:11px;letter-spacing:3px}
+.hero h1{font:800 clamp(42px,6vw,75px)/1.15 Orbitron;margin:25px 0}
+.hero h1 span{background:linear-gradient(90deg,var(--cyan),var(--purple));background-clip:text;color:transparent}
+.hero p{color:var(--muted);font-size:14px;line-height:1.9;max-width:450px;margin-bottom:30px}
+.primary-btn{background:linear-gradient(100deg,#00bcd4,#8d4dff);border:none;color:white;padding:15px 25px;border-radius:8px;font-weight:700;transition:.3s}
+.primary-btn:hover{transform:translateY(-4px);box-shadow:0 8px 30px #8d4dff50}
+.hero-image{height:400px;position:relative;perspective:1000px}
+.hero-image img{height:100%;width:100%;object-fit:contain;filter:drop-shadow(0 20px 40px #8b4dff40);animation:float 4s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-17px) rotateY(-8deg)}}
+.section{padding:85px 7%}
+.heading{margin-bottom:35px}
+.heading small{color:var(--cyan);letter-spacing:3px;font-size:11px}
+.heading h2{font:700 clamp(25px,4vw,38px) Orbitron;margin-top:15px}
+.heading p{color:var(--muted);font-size:13px;margin-top:12px}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:30px}
+.filters{display:flex;gap:10px;flex-wrap:wrap}
+.filter{padding:10px 17px;background:#171b29;color:#aaa;border:1px solid #ffffff18;border-radius:7px}
+.filter.active,.filter:hover{color:var(--cyan);border-color:var(--cyan)}
+.search{background:#151a27;color:white;border:1px solid #ffffff20;padding:12px 16px;border-radius:8px;outline:none;width:240px}
+.search:focus{border-color:var(--cyan)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.product{background:linear-gradient(145deg,#171c2b,#10131d);border:1px solid #ffffff12;border-radius:13px;overflow:hidden;transition:.35s}
+.product:hover{transform:translateY(-8px);border-color:#a855f777;box-shadow:0 15px 35px #0008}
+.product-image{height:205px;background:#1a2030;overflow:hidden;position:relative}
+.product-image img{width:100%;height:100%;object-fit:cover;transition:.5s}
+.product:hover .product-image img{transform:scale(1.09)}
+.product-info{padding:18px}
+.category{color:var(--cyan);font-size:10px;letter-spacing:2px}
+.product-info h3{font-size:15px;margin:12px 0}
+.rating{color:#ffcc55;font-size:12px}
+.price-row{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+.price{font:700 17px Orbitron}
+.add-btn{background:#8b4dff20;border:1px solid var(--purple);color:white;padding:10px 13px;border-radius:7px}
+.add-btn:hover{background:var(--purple)}
+.cart-section{background:#0e111a}
+.cart-layout{display:grid;grid-template-columns:1.5fr .8fr;gap:30px;align-items:start}
+.cart-items,.summary{background:#151a27;border:1px solid #ffffff15;border-radius:12px;padding:24px}
+.cart-item{display:flex;align-items:center;gap:18px;padding:17px 0;border-bottom:1px solid #ffffff15}
+.cart-item img{width:85px;height:75px;object-fit:cover;border-radius:8px}
+.cart-item-info{flex:1}
+.cart-item-info h4{font-size:14px;margin-bottom:8px}
+.cart-item-info p{color:var(--cyan);font-size:13px}
+.quantity{display:flex;align-items:center;gap:12px;margin-top:9px}
+.quantity button{background:#292e41;border:none;color:white;width:25px;height:25px;border-radius:5px}
+.remove{background:none;border:none;color:#ff667d;font-size:12px}
+.empty{text-align:center;color:var(--muted);padding:35px}
+.summary h3{font:700 18px Orbitron;margin-bottom:25px}
+.summary-line{display:flex;justify-content:space-between;margin:17px 0;color:#b5b8c6;font-size:13px}
+.summary-line.total{border-top:1px solid #ffffff20;padding-top:20px;color:white;font-weight:800;font-size:17px}
+.checkout{width:100%;margin-top:15px}
+.banner{margin:40px 7% 90px;padding:55px;border-radius:16px;background:radial-gradient(circle at 85% 50%,#9b5cff35,transparent 45%),#171426;border:1px solid #9b5cff55}
+.banner h2{font:700 clamp(25px,4vw,40px) Orbitron}
+.banner p{color:var(--muted);margin:15px 0 25px;font-size:13px}
+footer{padding:35px 7%;border-top:1px solid #ffffff15;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer p{color:var(--muted);font-size:12px}
+.modal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+.modal.open{display:flex}
+.modal-content{background:#171b29;border:1px solid #9b5cff77;border-radius:15px;padding:30px;width:100%;max-width:430px}
+.modal-content h2{font:700 22px Orbitron;margin-bottom:20px}
+.modal-content input{width:100%;padding:13px;background:#090d17;color:white;border:1px solid #ffffff25;border-radius:7px;margin-bottom:13px;outline:none}
+.modal-content input:focus{border-color:var(--cyan)}
+.modal-content button{margin-top:8px}
+.close{float:right;background:none;border:none;color:white;font-size:22px}
+#toast{position:fixed;bottom:25px;right:25px;background:#191e2d;border:1px solid var(--cyan);padding:15px 22px;border-radius:8px;transform:translateY(100px);opacity:0;transition:.3s;z-index:200}
+#toast.show{transform:translateY(0);opacity:1}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.navbar{padding:0 5%}.nav-links{display:none}.hero{grid-template-columns:1fr;padding:55px 6%}.hero-image{height:280px}.section{padding:60px 5%}.grid{gap:12px}.product-image{height:145px}.product-info{padding:12px}.product-info h3{font-size:13px}.price{font-size:13px}.add-btn{padding:8px;font-size:11px}.search{width:100%}.cart-layout{grid-template-columns:1fr}.banner{margin:20px 5% 60px;padding:30px}.cart-item img{width:65px;height:65px}}
+</style>
+</head>
+<body>
+
+<header class="navbar">
+<div class="logo">NEX<span>ORA</span></div>
+<nav class="nav-links">
+<a href="#home">Home</a>
+<a href="#products">Products</a>
+<a href="#cart">My Cart</a>
+<a href="#about">About</a>
+</nav>
+<button class="cart-btn" onclick="document.getElementById('cart').scrollIntoView({behavior:'smooth'})">🛒 Cart <span id="cartCount">0</span></button>
+</header>
+
+<section class="hero" id="home">
+<div class="hero-content">
+<div class="tag">✦ THE ULTIMATE GAMING STORE</div>
+<h1>LEVEL UP<br>YOUR <span>GAME.</span></h1>
+<p>Discover premium gaming accessories built for performance. Find your perfect gaming gear and take your gaming experience to the next level.</p>
+<button class="primary-btn" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">SHOP NOW →</button>
+</div>
+<div class="hero-image">
+<img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=1000&q=85" alt="Gaming setup">
+</div>
+</section>
+
+<section class="section" id="products">
+<div class="heading">
+<small>OUR COLLECTION</small>
+<h2>EXPLORE GAMING GEAR</h2>
+<p>Choose your weapons. Upgrade your setup.</p>
+</div>
+
+<div class="toolbar">
+<div class="filters">
+<button class="filter active" data-cat="All">All</button>
+<button class="filter" data-cat="Headphones">Headphones</button>
+<button class="filter" data-cat="Keyboard">Keyboard</button>
+<button class="filter" data-cat="Mouse">Mouse</button>
+<button class="filter" data-cat="Controller">Controller</button>
+<button class="filter" data-cat="Accessories">Accessories</button>
+</div>
+<input class="search" id="search" placeholder="🔍 Search products...">
+</div>
+
+<div class="grid" id="productGrid"></div>
+</section>
+
+<section class="section cart-section" id="cart">
+<div class="heading">
+<small>YOUR SELECTION</small>
+<h2>SHOPPING CART</h2>
+<p>Review your selected products.</p>
+</div>
+<div class="cart-layout">
+<div class="cart-items" id="cartItems"></div>
+<div class="summary">
+<h3>ORDER SUMMARY</h3>
+<div class="summary-line"><span>Subtotal</span><span id="subtotal">₹0</span></div>
+<div class="summary-line"><span>Delivery</span><span id="delivery">₹0</span></div>
+<div class="summary-line total"><span>Total</span><span id="total">₹0</span></div>
+<button class="primary-btn checkout" onclick="openCheckout()">PROCEED TO CHECKOUT →</button>
+</div>
+</div>
+</section>
+
+<section class="banner" id="about">
+<h2>BUILD YOUR<br>ULTIMATE SETUP.</h2>
+<p>Everything a gamer needs. All in one place.</p>
+<button class="primary-btn" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">EXPLORE PRODUCTS →</button>
+</section>
+
+<footer>
+<div><div class="logo">NEX<span>ORA</span></div><p>Power your play. Experience the future.</p></div>
+<p>© 2026 NEXORA Gaming. All rights reserved.</p>
+</footer>
+
+<div class="modal" id="checkoutModal">
+<div class="modal-content">
+<button class="close" onclick="closeCheckout()">×</button>
+<h2>CHECKOUT</h2>
+<form id="checkoutForm">
+<input required placeholder="Full Name" id="customerName">
+<input required type="email" placeholder="Email Address" id="customerEmail">
+<input required placeholder="Phone Number" id="customerPhone" type="tel">
+<input required placeholder="Delivery Address" id="customerAddress">
+<button class="primary-btn checkout" type="submit">PLACE DEMO ORDER</button>
+</form>
+<p style="font-size:11px;color:#9297a9;margin-top:15px">Demo checkout only. No actual payment will be collected.</p>
+</div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const products=[
+{id:1,name:"Phantom Gaming Headset",category:"Headphones",price:3499,rating:5,image:"https://images.unsplash.com/photo-1599669454699-248893623440?w=700&q=85"},
+{id:2,name:"RGB Mechanical Keyboard",category:"Keyboard",price:4299,rating:5,image:"https://images.unsplash.com/photo-1595225476474-87563907a212?w=700&q=85"},
+{id:3,name:"Pro Gaming Mouse",category:"Mouse",price:1799,rating:5,image:"https://images.unsplash.com/photo-1527814050087-3793815479db?w=700&q=85"},
+{id:4,name:"Wireless Gaming Controller",category:"Controller",price:2999,rating:5,image:"https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=700&q=85"},
+{id:5,name:"Premium Gaming Headphones",category:"Headphones",price:2499,rating:4,image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700&q=85"},
+{id:6,name:"RGB Gaming Mouse Pad",category:"Accessories",price:999,rating:5,image:"https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=700&q=85"},
+{id:7,name:"Wireless Gaming Mouse",category:"Mouse",price:2199,rating:5,image:"https://images.unsplash.com/photo-1613141412501-9012977f1969?w=700&q=85"},
+{id:8,name:"Gaming Setup Controller",category:"Controller",price:3899,rating:4,image:"https://images.unsplash.com/photo-1592840496694-26d035b52b48?w=700&q=85"},
+{id:9,name:"RGB Gaming Keyboard Pro",category:"Keyboard",price:5499,rating:5,image:"https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=700&q=85"},
+{id:10,name:"Gaming Desk Accessories",category:"Accessories",price:1499,rating:4,image:"https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=700&q=85"},
+{id:11,name:"Studio Gaming Headset",category:"Headphones",price:3199,rating:5,image:"https://images.unsplash.com/photo-1484704849700-f032a568e944?w=700&q=85"},
+{id:12,name:"RGB Gaming Mouse Pro",category:"Mouse",price:2699,rating:5,image:"https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=700&q=85"}
+];
+
+let cart=JSON.parse(localStorage.getItem("nexoraCart")||"[]");
+let category="All";
+
+const format=n=>"₹"+n.toLocaleString("en-IN");
+
+function saveCart(){
+localStorage.setItem("nexoraCart",JSON.stringify(cart));
+}
+
+function renderProducts(){
+const query=document.getElementById("search").value.toLowerCase();
+const filtered=products.filter(p=>(category==="All"||p.category===category)&&p.name.toLowerCase().includes(query));
+const grid=document.getElementById("productGrid");
+grid.innerHTML="";
+
+if(!filtered.length){
+grid.innerHTML='<p style="color:#9297a9;grid-column:1/-1;padding:30px">No products found.</p>';
+return;
+}
+
+filtered.forEach(p=>{
+const card=document.createElement("article");
+card.className="product";
+card.innerHTML=`
+<div class="product-image"><img src="${p.image}" alt="${p.name}" loading="lazy"></div>
+<div class="product-info">
+<div class="category">${p.category.toUpperCase()}</div>
+<h3>${p.name}</h3>
+<div class="rating">${"★".repeat(p.rating)}${"☆".repeat(5-p.rating)}</div>
+<div class="price-row">
+<div class="price">${format(p.price)}</div>
+<button class="add-btn" data-id="${p.id}">+ ADD</button>
+</div>
+</div>`;
+grid.appendChild(card);
+});
+}
+
+document.getElementById("productGrid").addEventListener("click",e=>{
+const button=e.target.closest(".add-btn");
+if(button)addToCart(Number(button.dataset.id));
+});
+
+document.getElementById("search").addEventListener("input",renderProducts);
+
+document.querySelectorAll(".filter").forEach(btn=>{
+btn.addEventListener("click",()=>{
+document.querySelector(".filter.active").classList.remove("active");
+btn.classList.add("active");
+category=btn.dataset.cat;
+renderProducts();
+});
+});
+
+function addToCart(id){
+const item=cart.find(p=>p.id===id);
+if(item)item.quantity++;
+else cart.push({...products.find(p=>p.id===id),quantity:1});
+saveCart();
+renderCart();
+toast("Product added to your cart!");
+}
+
+function changeQuantity(id,amount){
+const item=cart.find(p=>p.id===id);
+if(!item)return;
+item.quantity+=amount;
+if(item.quantity<=0)cart=cart.filter(p=>p.id!==id);
+saveCart();
+renderCart();
+}
+
+function removeItem(id){
+cart=cart.filter(p=>p.id!==id);
+saveCart();
+renderCart();
+toast("Product removed.");
+}
+
+function renderCart(){
+const container=document.getElementById("cartItems");
+container.innerHTML="";
+let count=0,subtotal=0;
+
+cart.forEach(p=>{
+count+=p.quantity;
+subtotal+=p.price*p.quantity;
+
+const item=document.createElement("div");
+item.className="cart-item";
+item.innerHTML=`
+<img src="${p.image}" alt="${p.name}">
+<div class="cart-item-info">
+<h4>${p.name}</h4>
+<p>${format(p.price)}</p>
+<div class="quantity">
+<button data-action="minus" data-id="${p.id}">−</button>
+<span>${p.quantity}</span>
+<button data-action="plus" data-id="${p.id}">+</button>
+</div>
+</div>
+<button class="remove" data-action="remove" data-id="${p.id}">Remove</button>`;
+container.appendChild(item);
+});
+
+if(cart.length===0)container.innerHTML='<div class="empty">🛒<br><br>Your cart is empty.<br>Explore products and add your favourites!</div>';
+
+const delivery=subtotal===0?0:subtotal>=5000?0:99;
+document.getElementById("cartCount").textContent=count;
+document.getElementById("subtotal").textContent=format(subtotal);
+document.getElementById("delivery").textContent=delivery===0?"FREE":format(delivery);
+document.getElementById("total").textContent=format(subtotal+delivery);
+}
+
+document.getElementById("cartItems").addEventListener("click",e=>{
+const btn=e.target.closest("[data-action]");
+if(!btn)return;
+const id=Number(btn.dataset.id);
+if(btn.dataset.action==="plus")changeQuantity(id,1);
+if(btn.dataset.action==="minus")changeQuantity(id,-1);
+if(btn.dataset.action==="remove")removeItem(id);
+});
+
+function openCheckout(){
+if(!cart.length){toast("Your cart is empty!");return;}
+document.getElementById("checkoutModal").classList.add("open");
+}
+
+function closeCheckout(){
+document.getElementById("checkoutModal").classList.remove("open");
+}
+
+document.getElementById("checkoutForm").addEventListener("submit",e=>{
+e.preventDefault();
+const name=document.getElementById("customerName").value;
+const orderId="NX"+Date.now().toString().slice(-7);
+alert("Thank you, "+name+"!\nYour demo order ID is "+orderId+".\nNo payment has been processed.");
+cart=[];
+saveCart();
+renderCart();
+e.target.reset();
+closeCheckout();
+});
+
+function toast(message){
+const el=document.getElementById("toast");
+el.textContent=message;
+el.classList.add("show");
+clearTimeout(window.toastTimer);
+window.toastTimer=setTimeout(()=>el.classList.remove("show"),2300);
+}
+
+renderProducts();
+renderCart();
+</script>
+</body>
+</html>
