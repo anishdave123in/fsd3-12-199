@@ -36,4 +36,4 @@ const appendData = async (filename, content) => {
 const data = await readData("file1.js");
 console.log(data);
  
-//done
+//done the task
