@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 const app = express();
 const urlPath = fileURLToPath(import.meta.url);
 const rootFolder = path.dirname(urlPath);
-app.use(express.static(path.join(rootFolder, "pages")));
+app.use(express.static(path.join(rootfolder, "pages")));
 
 app.use((req, res) => {
   res.status(404).send("<h1>Page not found</h1>");
